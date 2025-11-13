@@ -30,7 +30,6 @@ bool infinity_Board::update_board(Move<char>* move) {
         moves.push({x,y});
         NoOfMoves++;
         if(!moves.empty()&&NoOfMoves%3==0&&NoOfMoves!=0){
-            cout<<"surprise";
             int a = moves.front().first;
             int b = moves.front().second;
             board[a][b]=blank_symbol;
