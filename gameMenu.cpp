@@ -1,13 +1,13 @@
 #include "gameMenu.h"
 using namespace std;
 int main(){
-    vector<string> games={"Infinity_Tic"};
+    vector<string> games={"Infinity_Tic","SUS"};
     cout<<"choose a game"<<'\n';
     for (int i = 0; i < games.size(); i++)
     {
         cout<<i+1<<" "<<games[i]<<'\n';
     }
-    cout<<"0 to exit";
+    cout<<"0 to exit\n";
     int pick;
     cin>>pick;
     switch (pick)
@@ -16,6 +16,9 @@ int main(){
         break;
     case 1:
         runInfinity();
+        break;
+    case 2:
+        runSUS();
         break;
     default:
         cout<<"try again"<<'\n';
