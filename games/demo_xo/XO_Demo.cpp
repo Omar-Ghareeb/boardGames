@@ -12,7 +12,7 @@
 #include <vector>   // Required for vector
 #include <memory>   // Required for unique_ptr
 
-#include "BoardGame_Classes.h"
+#include "../../BoardGame_Classes.h"
 #include "XO_Classes.h"
 using namespace std;
 
@@ -28,7 +28,7 @@ using namespace std;
  *
  * @return int Returns 0 on successful execution.
  */
-int main() {
+int demo_main() {
 
     srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
 
