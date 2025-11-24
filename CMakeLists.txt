@@ -13,4 +13,13 @@ add_executable(board_games
     games/Infinity_XO/Infinity_Board.h
     games/Infinity_XO/Infinity_UI.cpp
     games/Infinity_XO/Infinity_UI.h
+    games/SUS/SUS_Board.cpp
+    games/SUS/SUS_Board.h
+    games/SUS/SUS_UI.cpp
+    games/SUS/SUS_UI.h
+    games/Word_XO/Word_Board.cpp
+    games/Word_XO/Word_Board.h
+    games/Word_XO/Word_UI.h
+    games/Word_XO/Word_UI.cpp
+
     )

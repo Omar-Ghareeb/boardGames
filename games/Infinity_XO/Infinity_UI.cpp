@@ -1,7 +1,7 @@
 #include "Infinity_UI.h"
 using namespace std;
 
-Infinity_UI::Infinity_UI() : UI<char>("Welcome to Infinity XO made", 3) {}
+Infinity_UI::Infinity_UI() : UI<char>("Welcome to Infinity XO", 3) {}
 
 Player<char>* Infinity_UI::create_player(string& name, char symbol, PlayerType type) {
     // Create player based on type
