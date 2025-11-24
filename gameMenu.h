@@ -10,6 +10,9 @@
 #include "games/memory_XO/memory_XO_UI.h"
 #include "games/Numerical_XO/Numerical_Board.h"
 #include "games/Numerical_XO/Numerical_UI.h"
+#include "games/4x4_XO/4x4_XO_Board.h"
+#include "games/4x4_XO/4x4_XO_UI.h"
+
 using namespace std;
 template <typename T>
 void cleanMem(UI<T>* ui,Board<T>* board, Player<T>** players){
@@ -61,5 +64,14 @@ void runNumerical(){
     GameManager<int> Numerical_game(Numerical_board, players, game_ui);
     Numerical_game.run();
     cleanMem(game_ui,Numerical_board,players);
+}
+
+void run4x4XO(){
+    UI<char>* game_ui = new _4x4_XO_UI();
+    Board<char>* _4x4_XO_board = new _4x4_XO_Board();
+    Player<char>** players = game_ui->setup_players();
+    GameManager<char> _4x4_XO_game(_4x4_XO_board, players, game_ui);
+    _4x4_XO_game.run();
+    cleanMem(game_ui,_4x4_XO_board,players);
 }
 #endif
