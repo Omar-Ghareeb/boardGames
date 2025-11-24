@@ -23,3 +23,4 @@ add_executable(board_games
     games/Word_XO/Word_UI.cpp
 
     )
+file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})
