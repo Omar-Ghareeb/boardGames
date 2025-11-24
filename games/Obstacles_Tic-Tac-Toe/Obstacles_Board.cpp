@@ -21,6 +21,7 @@ void Obstacles_Board::addRandomObstacles(int n)
             {
                 board[r][c] = '#';
                 added++;
+                nombreMoves += 2;
             }
         
     }
