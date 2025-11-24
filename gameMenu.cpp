@@ -1,7 +1,7 @@
 #include "gameMenu.h"
 using namespace std;
 int main(){
-    vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO"};
+    vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO","Numerical_XO"};
     cout<<"choose a game"<<'\n';
     for (int i = 0; i < games.size(); i++)
     {
@@ -25,6 +25,9 @@ int main(){
         break;
     case 4:
         runMemoryXO();
+        break;
+    case 5:
+        runNumerical();
         break;
     default:
         cout<<"try again"<<'\n';

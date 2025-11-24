@@ -8,6 +8,8 @@
 #include "games/Word_XO/Word_Board.h"
 #include "games/memory_XO/memory_XO_board.h"
 #include "games/memory_XO/memory_XO_UI.h"
+#include "games/Numerical_XO/Numerical_Board.h"
+#include "games/Numerical_XO/Numerical_UI.h"
 using namespace std;
 template <typename T>
 void cleanMem(UI<T>* ui,Board<T>* board, Player<T>** players){
@@ -50,5 +52,14 @@ void runMemoryXO() {
     GameManager<char> memory_xo_game(memory_xo_board,players,game_ui);
     memory_xo_game.run();
     cleanMem(game_ui,memory_xo_board,players);
+}
+
+void runNumerical(){
+    UI<int>* game_ui = new Numerical_UI();
+    Board<int>* Numerical_board = new Numerical_Board();
+    Player<int>** players = game_ui->setup_players();
+    GameManager<int> Numerical_game(Numerical_board, players, game_ui);
+    Numerical_game.run();
+    cleanMem(game_ui,Numerical_board,players);
 }
 #endif
