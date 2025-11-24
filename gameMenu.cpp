@@ -17,7 +17,7 @@ int main(){
     case 1:
         runInfinity();
         break;
-    case 2:
+    case 3:
         runInObstacles();
         break;
     default:

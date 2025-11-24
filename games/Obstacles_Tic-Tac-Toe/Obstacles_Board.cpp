@@ -63,7 +63,7 @@ bool Obstacles_Board::is_win(Player<char>* player)
         for (int col = 0; col < 6; col++)
         {
             if (board[row][col] == s && board[row+1][col]==s && board[row+2][col]==s && 
-                board[row+2][col]==s) return true;
+                board[row+3][col]==s) return true;
         }
     }
     //Diagonale vers le haut
