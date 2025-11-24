@@ -21,6 +21,10 @@ add_executable(board_games
     games/Word_XO/Word_Board.h
     games/Word_XO/Word_UI.h
     games/Word_XO/Word_UI.cpp
+        games/memory_XO/memory_XO_board.cpp
+        games/memory_XO/memory_XO_board.h
+        games/memory_XO/memory_XO_UI.cpp
+        games/memory_XO/memory_XO_UI.h
 
     )
 file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})

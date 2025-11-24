@@ -6,6 +6,8 @@
 #include "games/SUS/SUS_UI.h"
 #include "games/Word_XO/Word_UI.h"
 #include "games/Word_XO/Word_Board.h"
+#include "games/memory_XO/memory_XO_board.h"
+#include "games/memory_XO/memory_XO_UI.h"
 using namespace std;
 template <typename T>
 void cleanMem(UI<T>* ui,Board<T>* board, Player<T>** players){
@@ -40,5 +42,13 @@ void runWord(){
     GameManager<char> Word_game(Word_board, Word_players, Word_ui);
     Word_game.run();
     cleanMem(Word_ui,Word_board,Word_players);
+}
+void runMemoryXO() {
+    UI<char>* game_ui = new memory_XO_UI();
+    Board<char>* memory_xo_board = new memory_XO_board();
+    Player<char>** players = game_ui->setup_players();
+    GameManager<char> memory_xo_game(memory_xo_board,players,game_ui);
+    memory_xo_game.run();
+    cleanMem(game_ui,memory_xo_board,players);
 }
 #endif
