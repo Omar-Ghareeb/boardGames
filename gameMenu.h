@@ -2,15 +2,14 @@
 #define GAMEMENU_H
 #include "games/Infinity_XO/Infinity_Board.h"
 #include "games/Infinity_XO/Infinity_UI.h"
-<<<<<<< HEAD
+
 
 #include "games/Obstacles_Tic-Tac-Toe/Obstacles_UI.h"
 #include "games/Obstacles_Tic-Tac-Toe/Obstacles_Board.h"
 
-=======
 #include "games/SUS/SUS_Board.h"
 #include "games/SUS/SUS_UI.h"
->>>>>>> origin/main
+
 using namespace std;
 template <typename T>
 void cleanMem(UI<T>* ui,Board<T>* board, Player<T>** players){
