@@ -21,5 +21,8 @@ add_executable(board_games
     games/Word_XO/Word_Board.h
     games/Word_XO/Word_UI.h
     games/Word_XO/Word_UI.cpp
-
+    games/Numerical_XO/Numerical_Board.cpp
+    games/Numerical_XO/Numerical_Board.h
+    games/Numerical_XO/Numerical_UI.cpp
+    games/Numerical_XO/Numerical_UI.h
     )
