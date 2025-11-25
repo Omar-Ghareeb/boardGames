@@ -1,5 +1,5 @@
-#ifndef WORD_BOARD.h
-#define WORD_BOARD.h
+#ifndef WORD_BOARD_H
+#define WORD_BOARD_H
 #include "../../BoardGame_Classes.h"
 #include <queue>
 using namespace std;

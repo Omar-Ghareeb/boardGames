@@ -1,5 +1,5 @@
-#ifndef Infinity_UI.h
-#define Infinity_ui.h
+#ifndef INFINITY_UI_H
+#define INFINITY_UI_H
 #include "../../BoardGame_Classes.h"
 using namespace std;
 class Infinity_UI : public UI<char> {

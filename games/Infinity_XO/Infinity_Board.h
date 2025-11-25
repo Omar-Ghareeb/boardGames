@@ -1,5 +1,5 @@
-#ifndef Infinity_Board.h
-#define Infinity_Board.h
+#ifndef INFINITY_BOARD_H
+#define INFINITY_BOARD_H
 #include "../../BoardGame_Classes.h"
 #include <queue>
 using namespace std;
