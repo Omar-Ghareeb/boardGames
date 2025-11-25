@@ -1,7 +1,7 @@
 #include "gameMenu.h"
 using namespace std;
 int main(){
-    vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO","Numerical_XO","4x4_XO","Pyramid_XO","Obstacles_XO"};
+    vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO","Numerical_XO","4x4_XO","Pyramid_XO","Obstacles_XO","Four in a row"};
     cout<<"choose a game"<<'\n';
     for (int i = 0; i < games.size(); i++)
     {
@@ -37,6 +37,9 @@ int main(){
         break;
     case 8:
         runInObstacles();
+        break;
+    case 9:
+        runFouInARow();
         break;
     default:
         cout<<"try again"<<'\n';

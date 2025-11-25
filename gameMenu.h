@@ -22,6 +22,8 @@
 #include "games/4x4_XO/4x4_XO_UI.h"
 #include "games/Pyramid_XO/Pyramid_Board.h"
 #include "games/Pyramid_XO/Pyramid_UI.h"
+#include "games/Four_in_a_row/Four_in_a_row_Board.h"
+#include "games/Four_in_a_row/Four_in_a_row_UI.h"
 
 using namespace std;
 template <typename T>
@@ -113,5 +115,13 @@ void runPyramidXO(){
     GameManager<char> Pyramid_game(Pyramid_board, players, game_ui);
     Pyramid_game.run();
     cleanMem(game_ui,Pyramid_board,players);
+}
+
+void runFouInARow() {
+    UI<char>* game_ui=new Four_in_a_row_UI();
+    Board<char>* four_in_a_row_board=new Four_in_a_row_Board();
+    Player<char>** players=game_ui->setup_players();
+    GameManager<char> fourInARow_game(four_in_a_row_board, players, game_ui);
+    fourInARow_game.run();
 }
 #endif
