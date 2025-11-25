@@ -1,6 +1,6 @@
 #ifndef BOARED_GAME_SUS_BOARD_H
 #define BOARED_GAME_SUS_BOARD_H
-#include<BoardGame_Classes.h>
+#include "../../BoardGame_Classes.h"
 
 using namespace std;
 

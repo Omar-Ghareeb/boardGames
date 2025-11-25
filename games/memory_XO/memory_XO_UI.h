@@ -1,6 +1,6 @@
 #ifndef BOARED_GAME_MEMORY_XO_UI_H
 #define BOARED_GAME_MEMORY_XO_UI_H
-#include "BoardGame_Classes.h"
+#include "../../BoardGame_Classes.h"
 
 class memory_XO_UI :public UI<char>
 {
