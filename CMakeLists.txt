@@ -37,5 +37,13 @@ add_executable(board_games
     games/Pyramid_XO/Pyramid_Board.h
     games/Pyramid_XO/Pyramid_UI.cpp
     games/Pyramid_XO/Pyramid_UI.h
+        games/Obstacles_Tic-Tac-Toe/Obstacles_Board.cpp
+        games/Obstacles_Tic-Tac-Toe/Obstacles_Board.h
+        games/Obstacles_Tic-Tac-Toe/Obstacles_UI.cpp
+        games/Obstacles_Tic-Tac-Toe/Obstacles_UI.h
+        games/Four_in_a_row/Four_in_a_row_Board.cpp
+        games/Four_in_a_row/Four_in_a_row_Board.h
+        games/Four_in_a_row/Four_in_a_row_UI.cpp
+        games/Four_in_a_row/Four_in_a_row_UI.h
     )
 file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})
