@@ -12,7 +12,7 @@ bool Four_in_a_row_Board::update_board(Move<char> *move) {
     char mark=move->get_symbol();
 
     if (!(x < 0 || x >= rows || y < 0 || y >= columns) &&
-    (board[x][y] == blank_symbol || mark == 0)) {
+    (board[x][y] == blank_symbol || mark == 0) && available[y]==x &&available[y]>=0) {
 
         if (mark == 0) { // Undo move
             n_moves--;
@@ -21,6 +21,7 @@ bool Four_in_a_row_Board::update_board(Move<char> *move) {
         else {         // Apply move
             n_moves++;
             board[x][y] = toupper(mark);
+            available[y]--;
         }
         return true;
     }
@@ -34,7 +35,7 @@ bool Four_in_a_row_Board::is_win(Player<char> *player) {
     };
 
     // Check rows
-    for (int row=0; row<rows;++row){
+    for (int row=5; row>=0;--row){
         for (int col=0;col<4; ++col) {
             if (all_equal(board[row][col],board[row][col+1],board[row][col+2],board[row][col+3])&&board[row][col]==sym)
                 return true;
@@ -42,22 +43,22 @@ bool Four_in_a_row_Board::is_win(Player<char> *player) {
     }
 
     //Check columns
-    for (int col=0;col<columns; ++col) {
-        for (int row=0;row<3;++row) {
-            if (all_equal(board[row][col],board[row+1][col],board[row+2][col],board[row+3][col])&&board[row][col]==sym)
+    for (int col=0;col<7; ++col) {
+        for (int row=5;row>=3;--row) {
+            if (all_equal(board[row][col],board[row-1][col],board[row-2][col],board[row-3][col])&&board[row][col]==sym)
                 return true;
         }
     }
     //check diagonal
-    for (int row=0;row<3;++row) {
-        for (int col=0;col<4;++col) {
-            if (all_equal(board[row][col],board[row+1][col+1],board[row+2][col+2],board[row+3][col+3])&&board[row][col]==sym)
+    for (int row=5;row>=3;--row) {
+        for (int col=6;col>=3;--col) {
+            if (all_equal(board[row][col],board[row-1][col-1],board[row-2][col-2],board[row-3][col-3])&&board[row][col]==sym)
                 return true;
         }
     }
-    for (int row=3;row<rows;++row) {
+    for (int row=5;row>=3;--row) {
         for (int col=0;col<4;++col) {
-            if (all_equal(board[row][col],board[row-1][col+1],board[row-2][col+2],board[row-3][col+3])&&board[row][col]==sym)
+            if (all_equal(board[row][col],board[row-1][col-1],board[row-2][col+2],board[row-3][col+3])&&board[row][col]==sym)
                 return true;
         }
     }
@@ -71,4 +72,3 @@ bool Four_in_a_row_Board::is_draw(Player<char> *player) {
 bool Four_in_a_row_Board::game_is_over(Player<char> *player) {
     return(is_win(player)||is_draw(player));
 }
-

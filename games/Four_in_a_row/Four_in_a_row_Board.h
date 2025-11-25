@@ -7,6 +7,7 @@ class Four_in_a_row_Board :public Board<char>
 {
     private:
         char blank_symbol='.';
+        int available[7]={5,5,5,5,5,5,5};
     public:
         Four_in_a_row_Board();
         bool update_board(Move<char>* move);

@@ -5,6 +5,8 @@
 
 class Four_in_a_row_UI :public UI<char>
 {
+    private:
+        int available[7]={5,5,5,5,5,5,5};
     public:
     Four_in_a_row_UI();
     Player<char>* create_player(string& name, char symbol, PlayerType type);
