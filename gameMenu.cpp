@@ -1,11 +1,8 @@
 #include "gameMenu.h"
 using namespace std;
 int main(){
-<<<<<<< HEAD
-    vector<string> games={"Infinity_Tic" , "Obstacles Tic Tac Toe"};
-=======
-    vector<string> games={"Infinity_Tic","SUS"};
->>>>>>> origin/main
+
+    vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO" , "Obstacles Tic Tac Toe" };
     cout<<"choose a game"<<'\n';
     for (int i = 0; i < games.size(); i++)
     {
@@ -21,13 +18,17 @@ int main(){
     case 1:
         runInfinity();
         break;
-<<<<<<< HEAD
-    case 3:
-        runInObstacles();
-=======
     case 2:
         runSUS();
->>>>>>> origin/main
+        break;
+    case 3:
+        runInObstacles();
+        break;
+    case 4:
+        runWord();
+        break;
+    case 5:
+        runMemoryXO();
         break;
     default:
         cout<<"try again"<<'\n';
