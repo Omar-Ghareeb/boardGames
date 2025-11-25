@@ -12,6 +12,8 @@
 #include "games/Numerical_XO/Numerical_UI.h"
 #include "games/4x4_XO/4x4_XO_Board.h"
 #include "games/4x4_XO/4x4_XO_UI.h"
+#include "games/Pyramid_XO/Pyramid_Board.h"
+#include "games/Pyramid_XO/Pyramid_UI.h"
 
 using namespace std;
 template <typename T>
@@ -73,5 +75,14 @@ void run4x4XO(){
     GameManager<char> _4x4_XO_game(_4x4_XO_board, players, game_ui);
     _4x4_XO_game.run();
     cleanMem(game_ui,_4x4_XO_board,players);
+}
+
+void runPyramidXO(){
+    UI<char>* game_ui = new Pyramid_XO_UI();
+    Board<char>* Pyramid_board = new Pyramid_Board();
+    Player<char>** players = game_ui->setup_players();
+    GameManager<char> Pyramid_game(Pyramid_board, players, game_ui);
+    Pyramid_game.run();
+    cleanMem(game_ui,Pyramid_board,players);
 }
 #endif

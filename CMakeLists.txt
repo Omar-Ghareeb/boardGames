@@ -33,5 +33,9 @@ add_executable(board_games
     games/4x4_XO/4x4_XO_Board.h
     games/4x4_XO/4x4_XO_UI.cpp
     games/4x4_XO/4x4_XO_UI.h
+    games/Pyramid_XO/Pyramid_Board.cpp
+    games/Pyramid_XO/Pyramid_Board.h
+    games/Pyramid_XO/Pyramid_UI.cpp
+    games/Pyramid_XO/Pyramid_UI.h
     )
 file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})
