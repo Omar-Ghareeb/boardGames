@@ -1,5 +1,4 @@
-#ifndef GAMEMENU_H
-#define GAMEMENU_H
+#pragma once
 #include "games/Infinity_XO/Infinity_Board.h"
 #include "games/Infinity_XO/Infinity_UI.h"
 
@@ -143,4 +142,3 @@ void run5X5()
     FiveXFive_game.run();
     cleanMem(game_ui, fiveXFive_board, players);
 }
-#endif

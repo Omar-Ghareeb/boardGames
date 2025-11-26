@@ -1,8 +1,8 @@
-#ifndef INFINITY_UI_H
-#define INFINITY_UI_H
+#pragma once
 #include "../../BoardGame_Classes.h"
 using namespace std;
-class Infinity_UI : public UI<char> {
+class Infinity_UI : public UI<char>
+{
 public:
     /**
      * @brief Constructs an Infinity_UI object.
@@ -23,13 +23,12 @@ public:
      * @param type The type of the player (Human or Computer).
      * @return Pointer to the newly created Player<char> instance.
      */
-    Player<char>* create_player(string& name, char symbol, PlayerType type);
+    Player<char> *create_player(string &name, char symbol, PlayerType type);
 
     /**
      * @brief Retrieves the next move from a player.
      * @param player Pointer to the player whose move is being requested.
      * @return A pointer to a new `Move<char>` object representing the player's action.
      */
-    virtual Move<char>* get_move(Player<char>* player);
+    virtual Move<char> *get_move(Player<char> *player);
 };
-#endif
