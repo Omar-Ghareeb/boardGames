@@ -16,17 +16,6 @@ bool Numerical_Board::update_board(Move<int>* move) {
     int c = move->get_y();
     int symbol = move->get_symbol();
 
-    if(r < 0 || r >= rows || c < 0 || c >= columns) {
-        cout << "Move out of bounds. Try again.\n";
-        return false;
-    }
-
-    // Check if the cell is empty
-    if (board[r][c] != blank_symbol) {
-        cout << "Cell is already occupied. Try again.\n";
-        return false;
-    }
-
     // Place the symbol on the board
     board[r][c] = symbol;
     n_moves++;
