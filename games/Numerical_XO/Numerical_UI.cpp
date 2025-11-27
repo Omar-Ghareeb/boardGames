@@ -44,6 +44,21 @@ Move<int>* Numerical_UI::get_move(Player<int>* player) {
         cout << "\nPlease enter your move x and y (0 to 2): ";
         cin >> x >> y;
 
+        while (true) {
+            if (x < 0 || x >= player->get_board_ptr()->get_rows() ||
+                y < 0 || y >= player->get_board_ptr()->get_columns()) {
+                cout << "Invalid position! Try again.\n";
+                cout << "Please enter your move x and y (0 to 2): ";
+                cin >> x >> y;
+            } else if (board->get_cell_symbol(x, y) != 0) {
+                cout << "Cell already occupied! Try again.\n";
+                cout << "Please enter your move x and y (0 to 2): ";
+                cin >> x >> y;
+            } else {
+                break; // valid position
+            }
+        }
+
         // Display available numbers
         cout << "Available numbers: ";
         for (int n : available) cout << n << " ";
