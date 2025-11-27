@@ -45,5 +45,9 @@ add_executable(board_games
         games/Four_in_a_row/Four_in_a_row_Board.h
         games/Four_in_a_row/Four_in_a_row_UI.cpp
         games/Four_in_a_row/Four_in_a_row_UI.h
+        games/5X5-tic-tac-toe/5X5_Board.cpp
+        games/5X5-tic-tac-toe/5X5_Board.h
+        games/5X5-tic-tac-toe/5X5_UI.cpp
+        games/5X5-tic-tac-toe/5X5_UI.h
     )
 file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})

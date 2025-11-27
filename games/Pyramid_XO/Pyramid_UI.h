@@ -1,13 +1,12 @@
-#ifndef PYRAMID_UI_H
-#define PYRAMID_UI_H
-# include "BoardGame_Classes.h"
+#pragma once
+#include "BoardGame_Classes.h"
 using namespace std;
 
-class Pyramid_XO_UI : public UI<char> {
-    public:
+class Pyramid_XO_UI : public UI<char>
+{
+public:
     Pyramid_XO_UI();
     ~Pyramid_XO_UI() {};
-    Player<char>* create_player(string& name, char symbol, PlayerType type);
-    virtual Move<char>* get_move(Player<char>* player) override;
+    Player<char> *create_player(string &name, char symbol, PlayerType type);
+    virtual Move<char> *get_move(Player<char> *player) override;
 };
-#endif // PYRAMID_UI_H

@@ -1,20 +1,20 @@
 #pragma once
 #include "../../BoardGame_Classes.h"
 using namespace std;
-class Infinity_UI : public UI<char>
+class FiveXFive_UI : public UI<char>
 {
 public:
     /**
-     * @brief Constructs an Infinity_UI object.
+     * @brief Constructs an FiveXFive_UI object.
      *
      * Initializes the base `UI<char>` class with the welcome message "FCAI X-O".
      */
-    Infinity_UI();
+    FiveXFive_UI();
 
     /**
-     * @brief Destructor for Infinity_UI.
+     * @brief Destructor for FiveXFive_UI.
      */
-    ~Infinity_UI() {};
+    ~FiveXFive_UI() {};
 
     /**
      * @brief Creates a player of the specified type.
