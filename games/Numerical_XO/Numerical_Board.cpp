@@ -40,13 +40,13 @@ int Numerical_Board::line_sum(int r0,int c0,int r1,int c1,int r2,int c2){
 bool Numerical_Board::is_win(Player<int>* player) {
     // Check rows, columns, and diagonals
     for (int i = 0; i < 3; ++i) {
-        if (line_sum(i, 0, i, 1, i, 2) == 15 || // rows
-            line_sum(0, i, 1, i, 2, i) == 15) { // columns
+        if ((line_sum(i, 0, i, 1, i, 2) == 15 && board[i][0]*board[i][1]*board[i][2] != 0) || // rows
+            (line_sum(0, i, 1, i, 2, i) == 15 && board[0][i]*board[1][i]*board[2][i] != 0)) { // columns
             return true;
         }
     }
-    if (line_sum(0, 0, 1, 1, 2, 2) == 15 || // main diagonal
-        line_sum(0, 2, 1, 1, 2, 0) == 15) { // anti diagonal
+    if ((line_sum(0, 0, 1, 1, 2, 2) == 15 && board[0][0]*board[1][1]*board[2][2] != 0) || // main diagonal
+        (line_sum(0, 2, 1, 1, 2, 0) == 15 && board[0][2]*board[1][1]*board[2][0] != 0)) { // anti diagonal
         return true;
     }
     return false;
