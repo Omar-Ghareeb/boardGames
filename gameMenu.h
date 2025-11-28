@@ -16,14 +16,22 @@
 
 #include "games/memory_XO/memory_XO_board.h"
 #include "games/memory_XO/memory_XO_UI.h"
+
 #include "games/Numerical_XO/Numerical_Board.h"
 #include "games/Numerical_XO/Numerical_UI.h"
+
 #include "games/4x4_XO/4x4_XO_Board.h"
 #include "games/4x4_XO/4x4_XO_UI.h"
+
 #include "games/Pyramid_XO/Pyramid_Board.h"
 #include "games/Pyramid_XO/Pyramid_UI.h"
+
 #include "games/Four_in_a_row/Four_in_a_row_Board.h"
 #include "games/Four_in_a_row/Four_in_a_row_UI.h"
+
+#include "games/Misere/Misere_Board.h"
+#include "games/Misere/Misere_UI.h"
+
 
 using namespace std;
 template <typename T>
@@ -64,6 +72,37 @@ void runInObstacles()
 
     cleanMem(game_ui, board, players);
 }
+void runMisere()
+{
+    Misere_Board* board = new Misere_Board();
+
+    Misere_UI* game_ui = new Misere_UI(board);
+
+    Player<char>** players = game_ui->setup_players();
+
+    GameManager<char> Misere_game(board, players, game_ui);
+
+    Misere_game.run();
+
+    Player<char>* loser = nullptr;
+    for (int i = 0; i < 2; ++i) {
+        if (board->is_lose(players[i])) {
+            loser = players[i];
+            break;
+        }
+    }
+
+    // Display the final board with the death message
+    if (loser) {
+        game_ui->display_board(loser);
+    }
+    else {
+        game_ui->display_board(nullptr); // or normal board display
+    }
+
+    cleanMem(game_ui, board, players);
+}
+
 
 void runSUS() {
     UI<char>* SUS_ui = new SUS_UI();
@@ -88,40 +127,5 @@ void runMemoryXO() {
     GameManager<char> memory_xo_game(memory_xo_board,players,game_ui);
     memory_xo_game.run();
     cleanMem(game_ui,memory_xo_board,players);
-}
-
-void runNumerical(){
-    UI<int>* game_ui = new Numerical_UI();
-    Board<int>* Numerical_board = new Numerical_Board();
-    Player<int>** players = game_ui->setup_players();
-    GameManager<int> Numerical_game(Numerical_board, players, game_ui);
-    Numerical_game.run();
-    cleanMem(game_ui,Numerical_board,players);
-}
-
-void run4x4XO(){
-    UI<char>* game_ui = new _4x4_XO_UI();
-    Board<char>* _4x4_XO_board = new _4x4_XO_Board();
-    Player<char>** players = game_ui->setup_players();
-    GameManager<char> _4x4_XO_game(_4x4_XO_board, players, game_ui);
-    _4x4_XO_game.run();
-    cleanMem(game_ui,_4x4_XO_board,players);
-}
-
-void runPyramidXO(){
-    UI<char>* game_ui = new Pyramid_XO_UI();
-    Board<char>* Pyramid_board = new Pyramid_Board();
-    Player<char>** players = game_ui->setup_players();
-    GameManager<char> Pyramid_game(Pyramid_board, players, game_ui);
-    Pyramid_game.run();
-    cleanMem(game_ui,Pyramid_board,players);
-}
-
-void runFouInARow() {
-    UI<char>* game_ui=new Four_in_a_row_UI();
-    Board<char>* four_in_a_row_board=new Four_in_a_row_Board();
-    Player<char>** players=game_ui->setup_players();
-    GameManager<char> fourInARow_game(four_in_a_row_board, players, game_ui);
-    fourInARow_game.run();
 }
 #endif

@@ -1,5 +1,5 @@
 #ifndef WORD_UI_H
-#define WORD_ui_H
+#define WORD_UI_H
 #include "../../BoardGame_Classes.h"
 using namespace std;
 class Word_UI : public UI<char> {

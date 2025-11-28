@@ -317,5 +317,12 @@ Player<T>** UI<T>::setup_players() {
 
     return players;
 }
+template <typename T>
+Player<T>* UI<T>::create_player(string& name, T symbol, PlayerType type) {
+    // Create player based on type
+    cout << "Creating " << (type == PlayerType::HUMAN ? "human" : "computer")
+        << " player: " << name << " (" << symbol << ")\n";
 
+    return new Player<T>(name, symbol, type);
+}
 #endif // _BOARDGAME_CLASSES_H
