@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
     vector<string> games={"Infinity_Tic","SUS","Word","Memory_XO","Numerical_XO",
-        "4x4_XO","Pyramid_XO","Obstacles_XO","Four in a row" , "Misere Tic Tac Toe"};
+        "4x4_XO","Pyramid_XO","Obstacles_XO","Four in a row" , "Misere Tic Tac Toe" , "Diamond Tic Tac Toe"};
     cout<<"choose a game"<<'\n';
     for (int i = 0; i < games.size(); i++)
     {
@@ -34,6 +34,9 @@ int main(){
    
     case 10:
         runMisere();
+        break;
+    case 11:
+        runDiamond();
         break;
     default:
         cout<<"try again"<<'\n';

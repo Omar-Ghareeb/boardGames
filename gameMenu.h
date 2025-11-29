@@ -32,6 +32,9 @@
 #include "games/Misere/Misere_Board.h"
 #include "games/Misere/Misere_UI.h"
 
+#include "games/Diamond/Diamond_Board.h"
+#include "games/Diamond/Diamond_UI.h"
+
 
 using namespace std;
 template <typename T>
@@ -69,6 +72,20 @@ void runInObstacles()
     GameManager<char> Obstacles_game(board, players, game_ui);
 
     Obstacles_game.run();
+
+    cleanMem(game_ui, board, players);
+}
+void runDiamond()
+{
+    UI<char>* game_ui = new Diamond_UI();
+
+    Board<char>* board = new Diamond_Board();
+
+    Player<char>** players = game_ui->setup_players();
+
+    GameManager<char> Diamond_game(board, players, game_ui);
+
+    Diamond_game.run();
 
     cleanMem(game_ui, board, players);
 }
