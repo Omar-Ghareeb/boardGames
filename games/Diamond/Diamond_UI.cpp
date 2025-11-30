@@ -17,11 +17,11 @@ Move<char>* Diamond_UI::get_move(Player<char>* player) {
     if (player->get_type() == PlayerType::HUMAN) 
     {
         cout << "\nPlease enter your move x and y (0 to 4): \n";
-            cout << "                   { 0, 2 }                    \n";
-            cout << "          { 1, 1 } { 1, 2 } { 1, 3 }           \n";
-            cout << " { 2, 0 } { 2, 1 } { 2, 2 } { 2, 3 } { 2, 4 }  \n";
-            cout << "          { 3, 1 } { 3, 2 } { 3, 3 }           \n";
-            cout<<  "                   { 4, 2 }                    \n";
+           // cout << "                   { 0, 2 }                    \n";
+           // cout << "          { 1, 1 } { 1, 2 } { 1, 3 }           \n";
+          //  cout << " { 2, 0 } { 2, 1 } { 2, 2 } { 2, 3 } { 2, 4 }  \n";
+          //  cout << "          { 3, 1 } { 3, 2 } { 3, 3 }           \n";
+          //  cout<<  "                   { 4, 2 }                    \n";
             
         cin >> x >> y;
       

@@ -108,13 +108,11 @@ void runMisere()
             break;
         }
     }
-
-    // Display the final board with the death message
     if (loser) {
         game_ui->display_board(loser);
     }
     else {
-        game_ui->display_board(nullptr); // or normal board display
+        game_ui->display_board(nullptr); 
     }
 
     cleanMem(game_ui, board, players);
