@@ -25,11 +25,15 @@
 
 #include "games/Four_in_a_row/Four_in_a_row_Board.h"
 #include "games/Four_in_a_row/Four_in_a_row_UI.h"
+
 #include "games/5X5-tic-tac-toe/5X5_Board.h"
 #include "games/5X5-tic-tac-toe/5X5_UI.h"
 
 #include "games/Misere/Misere_Board.h"
 #include "games/Misere/Misere_UI.h"
+
+#include "games/Diamond/Diamond_Board.h"
+#include "games/Diamond/Diamond_UI.h"
 
 
 using namespace std;
@@ -73,6 +77,20 @@ void runInObstacles()
 
     cleanMem(game_ui, board, players);
 }
+void runDiamond()
+{
+    UI<char>* game_ui = new Diamond_UI();
+
+    Board<char>* board = new Diamond_Board();
+
+    Player<char>** players = game_ui->setup_players();
+
+    GameManager<char> Diamond_game(board, players, game_ui);
+
+    Diamond_game.run();
+
+    cleanMem(game_ui, board, players);
+}
 void runMisere()
 {
     Misere_Board* board = new Misere_Board();
@@ -92,13 +110,11 @@ void runMisere()
             break;
         }
     }
-
-    // Display the final board with the death message
     if (loser) {
         game_ui->display_board(loser);
     }
     else {
-        game_ui->display_board(nullptr); // or normal board display
+        game_ui->display_board(nullptr); 
     }
 
     cleanMem(game_ui, board, players);
