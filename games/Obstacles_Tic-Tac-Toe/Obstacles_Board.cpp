@@ -48,6 +48,7 @@ bool Obstacles_Board::update_board(Move<char>* move)
 bool Obstacles_Board::is_win(Player<char>* player)
 {
     char s = player->get_symbol();
+   
     //Horizontale
     for (int row = 0; row < 6; row++)
     {

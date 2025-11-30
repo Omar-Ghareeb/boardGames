@@ -140,7 +140,7 @@ class Player {
 protected:
     string name;         ///< Player name
     PlayerType type;     ///< Player type (e.g., HUMAN or COMPUTER)
-    T symbol;            ///< Player’s symbol on board
+    T symbol;            ///< Playerâ€™s symbol on board
     Board<T>* boardPtr;  ///< Pointer to the game board
 
 public:
@@ -337,10 +337,6 @@ Player<T>** UI<T>::setup_players() {
 
     return players;
 }
-
-/**
- * @brief Default implementation of creating two players.
- */
 template <typename T>
 Player<T>* UI<T>::create_player(string& name, T symbol, PlayerType type) {
     // Create player based on type
@@ -349,5 +345,4 @@ Player<T>* UI<T>::create_player(string& name, T symbol, PlayerType type) {
 
     return new Player<T>(name, symbol, type);
 }
-
 #endif // _BOARDGAME_CLASSES_H

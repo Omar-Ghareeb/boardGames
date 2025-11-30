@@ -13,16 +13,24 @@
 
 #include "games/memory_XO/memory_XO_board.h"
 #include "games/memory_XO/memory_XO_UI.h"
+
 #include "games/Numerical_XO/Numerical_Board.h"
 #include "games/Numerical_XO/Numerical_UI.h"
+
 #include "games/4x4_XO/4x4_XO_Board.h"
 #include "games/4x4_XO/4x4_XO_UI.h"
+
 #include "games/Pyramid_XO/Pyramid_Board.h"
 #include "games/Pyramid_XO/Pyramid_UI.h"
+
 #include "games/Four_in_a_row/Four_in_a_row_Board.h"
 #include "games/Four_in_a_row/Four_in_a_row_UI.h"
 #include "games/5X5-tic-tac-toe/5X5_Board.h"
 #include "games/5X5-tic-tac-toe/5X5_UI.h"
+
+#include "games/Misere/Misere_Board.h"
+#include "games/Misere/Misere_UI.h"
+
 
 using namespace std;
 template <typename T>
@@ -65,6 +73,37 @@ void runInObstacles()
 
     cleanMem(game_ui, board, players);
 }
+void runMisere()
+{
+    Misere_Board* board = new Misere_Board();
+
+    Misere_UI* game_ui = new Misere_UI(board);
+
+    Player<char>** players = game_ui->setup_players();
+
+    GameManager<char> Misere_game(board, players, game_ui);
+
+    Misere_game.run();
+
+    Player<char>* loser = nullptr;
+    for (int i = 0; i < 2; ++i) {
+        if (board->is_lose(players[i])) {
+            loser = players[i];
+            break;
+        }
+    }
+
+    // Display the final board with the death message
+    if (loser) {
+        game_ui->display_board(loser);
+    }
+    else {
+        game_ui->display_board(nullptr); // or normal board display
+    }
+
+    cleanMem(game_ui, board, players);
+}
+
 
 void runSUS()
 {
@@ -93,6 +132,7 @@ void runMemoryXO()
     memory_xo_game.run();
     cleanMem(game_ui, memory_xo_board, players);
 }
+
 
 void runNumerical()
 {
