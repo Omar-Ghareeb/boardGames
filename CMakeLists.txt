@@ -49,5 +49,17 @@ add_executable(board_games
         games/5X5-tic-tac-toe/5X5_Board.h
         games/5X5-tic-tac-toe/5X5_UI.cpp
         games/5X5-tic-tac-toe/5X5_UI.h
+        games/Misere/Misere_Board.cpp
+        games/Misere/Misere_Board.h
+        games/Misere/Misere_UI.h
+        games/Misere/Misere_UI.cpp
+        games/Diamond/Diamond_Board.cpp
+        games/Diamond/Diamond_Board.h
+        games/Diamond/Diamond_UI.h
+        games/Diamond/Diamond_UI.cpp
+        games/Ultimate/Ultimate_Board.cpp
+        games/Ultimate/Ultimate_Board.h
+        games/Ultimate/Ultimate_UI.cpp
+        games/Ultimate/Ultimate_UI.h
     )
 file(COPY dic.txt DESTINATION ${CMAKE_BINARY_DIR})
