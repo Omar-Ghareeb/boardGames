@@ -7,7 +7,7 @@ class Ultimate_Board : public Board<char>
 {
 private:
     char blank_symbol = '.'; // basic blank symbol
-    int NoOfCompletedBoard = 0;
+    int n_moves = 81;
     char boards[3][3];
 
 public:

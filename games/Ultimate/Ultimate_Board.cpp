@@ -27,7 +27,6 @@ void Ultimate_Board::MiniGridDOne(char sym)
                 if (boards[i / 3][j / 3] == 'c')
                 {
                     boards[i / 3][j / 3] = sym;
-                    NoOfCompletedBoard++;
                     for (int x = i; x < i + 3; x++)
                     {
                         if (j == 0 || j == 3 || j == 6)
@@ -35,20 +34,25 @@ void Ultimate_Board::MiniGridDOne(char sym)
                             for (int Y = j; Y < j + 3; Y++)
                             {
                                 board[x][Y] = toupper(sym);
+                                n_moves--;
                             }
+                            n_moves++;
                         }
                         else if (j == 1 || j == 4 || j == 7)
                         {
                             board[x][j - 1] = toupper(sym);
                             board[x][j] = toupper(sym);
                             board[x][j + 1] = toupper(sym);
+                            n_moves -= 2;
                         }
                         else
                         {
                             for (int y = j - 2; y <= j; y++)
                             {
                                 board[x][y] = toupper(sym);
+                                n_moves--;
                             }
+                            n_moves++;
                         }
                     }
                 }
@@ -58,7 +62,6 @@ void Ultimate_Board::MiniGridDOne(char sym)
                 if (boards[j / 3][i / 3] == 'c')
                 {
                     boards[j / 3][i / 3] = sym;
-                    NoOfCompletedBoard++;
                     for (int x = i; x < i + 3; x++)
                     {
                         if (j == 0 || j == 3 || j == 6)
@@ -66,20 +69,25 @@ void Ultimate_Board::MiniGridDOne(char sym)
                             for (int Y = j; Y < j + 3; Y++)
                             {
                                 board[Y][x] = toupper(sym);
+                                n_moves--;
                             }
+                            n_moves++;
                         }
                         else if (j == 1 || j == 4 || j == 7)
                         {
                             board[j - 1][x] = toupper(sym);
                             board[j][x] = toupper(sym);
                             board[j + 1][x] = toupper(sym);
+                            n_moves -= 2;
                         }
                         else
                         {
                             for (int y = j - 2; y <= j; y++)
                             {
                                 board[y][x] = toupper(sym);
+                                n_moves--;
                             }
+                            n_moves++;
                         }
                     }
                 }
@@ -97,7 +105,6 @@ void Ultimate_Board::MiniGridDOne(char sym)
                 if (boards[i / 3][j / 3] == 'c')
                 {
                     boards[i / 3][j / 3] = sym;
-                    NoOfCompletedBoard++;
                     for (int X = i; X < i + 3; X++)
                     {
 
@@ -106,7 +113,9 @@ void Ultimate_Board::MiniGridDOne(char sym)
                         {
 
                             board[X][Y] = toupper(sym);
+                            n_moves--;
                         }
+                        n_moves++;
                     }
                 }
             }
@@ -126,15 +135,16 @@ bool Ultimate_Board::update_board(Move<char> *move)
 
         if (mark == 0)
         { // Undo move
-            n_moves--;
+            // n_moves--;
             board[x][y] = blank_symbol;
         }
         else
         { // Apply move
-            n_moves++;
+            n_moves--;
             board[x][y] = toupper(mark);
         }
         MiniGridDOne(mark);
+
         return true;
     }
     return false;
@@ -143,6 +153,7 @@ bool Ultimate_Board::update_board(Move<char> *move)
 bool Ultimate_Board::is_win(Player<char> *player)
 {
     const char sym = player->get_symbol();
+    // cout << n_moves << '\n';
 
     auto all_equal = [&](char a, char b, char c)
     {
@@ -167,7 +178,7 @@ bool Ultimate_Board::is_win(Player<char> *player)
 
 bool Ultimate_Board::is_draw(Player<char> *player)
 {
-    return (NoOfCompletedBoard == 9 && !is_win(player));
+    return (n_moves == 0 && !is_win(player));
 }
 
 bool Ultimate_Board::game_is_over(Player<char> *player)
