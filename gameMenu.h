@@ -35,6 +35,8 @@
 #include "games/Diamond/Diamond_Board.h"
 #include "games/Diamond/Diamond_UI.h"
 
+#include "games/Ultimate/Ultimate_Board.h"
+#include "games/Ultimate/Ultimate_UI.h"
 
 using namespace std;
 template <typename T>
@@ -79,11 +81,11 @@ void runInObstacles()
 }
 void runDiamond()
 {
-    UI<char>* game_ui = new Diamond_UI();
+    UI<char> *game_ui = new Diamond_UI();
 
-    Board<char>* board = new Diamond_Board();
+    Board<char> *board = new Diamond_Board();
 
-    Player<char>** players = game_ui->setup_players();
+    Player<char> **players = game_ui->setup_players();
 
     GameManager<char> Diamond_game(board, players, game_ui);
 
@@ -93,33 +95,36 @@ void runDiamond()
 }
 void runMisere()
 {
-    Misere_Board* board = new Misere_Board();
+    Misere_Board *board = new Misere_Board();
 
-    Misere_UI* game_ui = new Misere_UI(board);
+    Misere_UI *game_ui = new Misere_UI(board);
 
-    Player<char>** players = game_ui->setup_players();
+    Player<char> **players = game_ui->setup_players();
 
     GameManager<char> Misere_game(board, players, game_ui);
 
     Misere_game.run();
 
-    Player<char>* loser = nullptr;
-    for (int i = 0; i < 2; ++i) {
-        if (board->is_lose(players[i])) {
+    Player<char> *loser = nullptr;
+    for (int i = 0; i < 2; ++i)
+    {
+        if (board->is_lose(players[i]))
+        {
             loser = players[i];
             break;
         }
     }
-    if (loser) {
+    if (loser)
+    {
         game_ui->display_board(loser);
     }
-    else {
-        game_ui->display_board(nullptr); 
+    else
+    {
+        game_ui->display_board(nullptr);
     }
 
     cleanMem(game_ui, board, players);
 }
-
 
 void runSUS()
 {
@@ -148,7 +153,6 @@ void runMemoryXO()
     memory_xo_game.run();
     cleanMem(game_ui, memory_xo_board, players);
 }
-
 
 void runNumerical()
 {
@@ -197,4 +201,13 @@ void run5X5()
     GameManager<char> FiveXFive_game(fiveXFive_board, players, game_ui);
     FiveXFive_game.run();
     cleanMem(game_ui, fiveXFive_board, players);
+}
+void runUltimate()
+{
+    UI<char> *game_ui = new Ultimate_UI();
+    Board<char> *Ultimate_board = new Ultimate_Board();
+    Player<char> **players = game_ui->setup_players();
+    GameManager<char> FiveXFive_game(Ultimate_board, players, game_ui);
+    FiveXFive_game.run();
+    cleanMem(game_ui, Ultimate_board, players);
 }
