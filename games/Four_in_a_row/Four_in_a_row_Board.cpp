@@ -58,7 +58,7 @@ bool Four_in_a_row_Board::is_win(Player<char> *player) {
     }
     for (int row=5;row>=3;--row) {
         for (int col=0;col<4;++col) {
-            if (all_equal(board[row][col],board[row-1][col-1],board[row-2][col+2],board[row-3][col+3])&&board[row][col]==sym)
+            if (all_equal(board[row][col],board[row-1][col+1],board[row-2][col+2],board[row-3][col+3])&&board[row][col]==sym)
                 return true;
         }
     }
