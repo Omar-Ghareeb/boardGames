@@ -23,6 +23,7 @@ Move<char> *FiveXFive_UI::get_move(Player<char> *player)
     }
     else if (player->get_type() == PlayerType::COMPUTER)
     {
+        // Simple random move generation
         x = rand() % player->get_board_ptr()->get_rows();
         y = rand() % player->get_board_ptr()->get_columns();
     }
