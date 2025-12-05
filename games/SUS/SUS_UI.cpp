@@ -6,7 +6,7 @@ SUS_UI::SUS_UI() :UI<char>("Welcome to SUS game",3){}
 Player<char> **SUS_UI::setup_players() {
        Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
-
+    // override players and their symbols to be S and U
     string nameX = get_player_name("Player S");
     PlayerType typeX = get_player_type_choice("Player S", type_options);
     players[0] = create_player(nameX, static_cast<char>('S'), typeX);

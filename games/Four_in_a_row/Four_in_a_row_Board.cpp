@@ -1,18 +1,20 @@
 #include "Four_in_a_row_Board.h"
 
 Four_in_a_row_Board::Four_in_a_row_Board() :Board<char>(6,7) {
+    // Initialize all cells with blank_symbol
     for (auto& row :board)
         for (auto& cell :row)
             cell = blank_symbol;
 }
 
 bool Four_in_a_row_Board::update_board(Move<char> *move) {
-    int x = move->get_x();
     int y = move->get_y();
+    //set x by the available value in this column 'y'
+    int x = available[y];
     char mark=move->get_symbol();
-
+    // Validate move and apply if valid
     if (!(x < 0 || x >= rows || y < 0 || y >= columns) &&
-    (board[x][y] == blank_symbol || mark == 0) && available[y]==x &&available[y]>=0) {
+    (board[x][y] == blank_symbol || mark == 0) ) {
 
         if (mark == 0) { // Undo move
             n_moves--;
@@ -21,6 +23,10 @@ bool Four_in_a_row_Board::update_board(Move<char> *move) {
         else {         // Apply move
             n_moves++;
             board[x][y] = toupper(mark);
+            /*update the available moves in this column
+            ex: if it's the start and a player put a move in y=0 then the next available move
+            in this column will be at x=4,y=0 by subtracting 1 from the available
+            in column y */
             available[y]--;
         }
         return true;
@@ -49,7 +55,7 @@ bool Four_in_a_row_Board::is_win(Player<char> *player) {
                 return true;
         }
     }
-    //check diagonal
+    //check diagonals
     for (int row=5;row>=3;--row) {
         for (int col=6;col>=3;--col) {
             if (all_equal(board[row][col],board[row-1][col-1],board[row-2][col-2],board[row-3][col-3])&&board[row][col]==sym)
