@@ -10,7 +10,9 @@ private:
 
 public:
     SUS_Board();
+    //count the number of SUS for player1
     int SUSPlayer1 = 0;
+    //count the number of SUS for player2
     int SUSPlayer2 = 0;
     void checkNumOfSUS(char sym);
     bool update_board(Move<char> *move);

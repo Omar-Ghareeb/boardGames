@@ -4,6 +4,8 @@
 class Four_in_a_row_UI : public UI<char>
 {
 private:
+    //to check the available moves in each column
+    // available[column]=row
     int available[7] = {5, 5, 5, 5, 5, 5, 5};
 
 public:
