@@ -34,7 +34,7 @@ int main(){
         runNumerical();
         break;
     case 6:
-        run4x4XO();
+       run4x4XO();
         break;
     case 7:
         runPyramidXO();
