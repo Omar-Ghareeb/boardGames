@@ -7,4 +7,5 @@ public:
     memory_XO_UI();
     Player<char> *create_player(string &name, char symbol, PlayerType type);
     virtual Move<char> *get_move(Player<char> *player);
+    virtual void display_board_matrix(const vector<vector<char>>& matrix) const;
 };

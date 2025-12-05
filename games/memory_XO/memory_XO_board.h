@@ -6,7 +6,6 @@ class memory_XO_board : public Board<char>
 {
 private:
     char blank_symbol = '.';
-    char matrix[3][3];
 
 public:
     memory_XO_board();
@@ -15,4 +14,5 @@ public:
     bool is_lose(Player<char> *) { return false; };
     bool is_draw(Player<char> *player);
     bool game_is_over(Player<char> *player);
+    void display_real_board();
 };
