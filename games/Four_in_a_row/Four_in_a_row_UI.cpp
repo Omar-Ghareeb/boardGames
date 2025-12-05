@@ -13,15 +13,17 @@ Move<char>* Four_in_a_row_UI::get_move(Player<char>* player) {
     int x,y;
 
     if (player->get_type()==PlayerType::HUMAN) {
-        cout << "\nPlease enter your move x and y : ";
-        cin >> x >> y;
+        cout << "\nPlease enter your move y : ";
+        cin >> y;
     }
     else if (player->get_type() == PlayerType::COMPUTER) {
-        x= available[rand()%7];
+        //makes the computer choose a random column and get the available x from it to get a valid move
         y=rand()% player->get_board_ptr()->get_columns();
+        x= available[y];
     }
-    if (available[y]>=0 && available[y]==x && x<player->get_board_ptr()->get_rows()
-        && y<player->get_board_ptr()->get_columns() && x>=0 && y>=0)
+    // checks if the move is valid before decrementing the available moves in this column
+    if (x>=0 && x< player->get_board_ptr()->get_rows()
+        && y< player->get_board_ptr()->get_columns() && y>=0)
         available[y]--;
     return new Move<char>(x, y, player->get_symbol());
 }

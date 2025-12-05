@@ -5,6 +5,8 @@ class Four_in_a_row_Board : public Board<char>
 {
 private:
     char blank_symbol = '.';
+    //to check the available moves in each column
+    // available[column]=row
     int available[7] = {5, 5, 5, 5, 5, 5, 5};
 
 public:
