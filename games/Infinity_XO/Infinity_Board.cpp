@@ -1,56 +1,71 @@
 #include "infinity_Board.h"
 using namespace std;
 
-
-
-infinity_Board::infinity_Board() : Board(3, 3) {
+infinity_Board::infinity_Board() : Board(3, 3)
+{
     // Initialize all cells with blank_symbol
-    for (auto& row : board)
-        for (auto& cell : row)
+    for (auto &row : board)
+        for (auto &cell : row)
             cell = blank_symbol;
 }
 
-bool infinity_Board::update_board(Move<char>* move) {
+bool infinity_Board::update_board(Move<char> *move)
+{
     int x = move->get_x();
     int y = move->get_y();
     char mark = move->get_symbol();
 
     // Validate move and apply if valid
     if (!(x < 0 || x >= rows || y < 0 || y >= columns) &&
-        (board[x][y] == blank_symbol || mark == 0)) {
+        (board[x][y] == blank_symbol || mark == 0))
+    {
 
-        if (mark == 0) { // Undo move
+        if (mark == 0)
+        { // Undo move
             n_moves--;
             board[x][y] = blank_symbol;
         }
-        else {         // Apply move
+        else
+        { // Apply move
             n_moves++;
             board[x][y] = toupper(mark);
         }
-        moves.push({x,y});
+
+        // --- Logic for Infinity XO ---
+        // 1. Store the move location
+        moves.push({x, y});
+
+        // 2. Increment total move counter
         NoOfMoves++;
-        if(!moves.empty()&&NoOfMoves%3==0&&NoOfMoves!=0){
+
+        // 3. Check condition to remove the oldest move
+        // Every 3rd move (3, 6, 9...), the oldest move in the queue is popped.
+        if (!moves.empty() && NoOfMoves % 3 == 0 && NoOfMoves != 0)
+        {
             int a = moves.front().first;
             int b = moves.front().second;
-            board[a][b]=blank_symbol;
-            moves.pop();
-            n_moves--;
+            board[a][b] = blank_symbol; // Clear the cell
+            moves.pop();                // Remove from history
+            n_moves--;                  // Decrement active move count
         }
-        
+
         return true;
     }
     return false;
 }
 
-bool infinity_Board::is_win(Player<char>* player) {
+bool infinity_Board::is_win(Player<char> *player)
+{
     const char sym = player->get_symbol();
 
-    auto all_equal = [&](char a, char b, char c) {
+    auto all_equal = [&](char a, char b, char c)
+    {
         return a == b && b == c && a != blank_symbol;
-        };
+    };
 
     // Check rows and columns
-    for (int i = 0; i < rows; ++i) {
+    for (int i = 0; i < rows; ++i)
+    {
         if ((all_equal(board[i][0], board[i][1], board[i][2]) && board[i][0] == sym) ||
             (all_equal(board[0][i], board[1][i], board[2][i]) && board[0][i] == sym))
             return true;
@@ -64,10 +79,12 @@ bool infinity_Board::is_win(Player<char>* player) {
     return false;
 }
 
-bool infinity_Board::is_draw(Player<char>* player) {
+bool infinity_Board::is_draw(Player<char> *player)
+{
     return (n_moves == 9 && !is_win(player));
 }
 
-bool infinity_Board::game_is_over(Player<char>* player) {
+bool infinity_Board::game_is_over(Player<char> *player)
+{
     return is_win(player) || is_draw(player);
 }
