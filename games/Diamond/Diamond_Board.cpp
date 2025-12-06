@@ -3,9 +3,14 @@
 
 Diamond_Board::Diamond_Board() :Board(5, 5)
 {
-    for (auto& row : board)
-        for (auto& cell : row)
-            cell = blank_symbol;
+    for (int r = 0; r < rows; ++r) {
+        for (int c = 0; c < columns; ++c) {
+            if (is_valid_cell(r, c))
+                board[r][c] = blank_symbol;
+            else
+                board[r][c] = invalid_symbol;
+        }
+    }
 }
 
 bool Diamond_Board::is_valid_cell(int x, int y)
@@ -42,10 +47,10 @@ bool Diamond_Board::update_board(Move<char>* move)
     return true;
 
 }
-/*
+ /*
                {0,2}
          {1,1} {1,2} {1,3}
-   {2,0} {2,1} {2,2} {2,3} {2,4}
+  {2,0} {2,1} {2,2} {2,3} {2,4}
          {3,1} {3,2} {3,3}
                {4,2}
 */

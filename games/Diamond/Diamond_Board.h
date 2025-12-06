@@ -7,6 +7,7 @@ class Diamond_Board : public Board<char>
 {
 private:
     char blank_symbol = '.';
+    char invalid_symbol = ' ';
     int Moves = 0;
     vector<pair<int, int>> invalid = 
     {
