@@ -34,9 +34,6 @@ bool Misere_Board::is_lose(Player<char>* player)
     char s = player->get_symbol();
   
     ////Diogonale vers le bas
-    //  00 01 02
-    //  10 11 12
-    //  20 21 22
     for (int r = 0; r < 3; r++)
         if (board[r][0] == s && board[r][1] == s && board[r][2] == s)
         {

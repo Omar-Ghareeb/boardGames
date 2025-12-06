@@ -23,13 +23,12 @@ Player<char>** Misere_UI::setup_players() {
 
 void Misere_UI::display_board(Player<char>* loser)
 {
-    auto mb = dynamic_cast<Misere_Board*>(board);  // cast safely
+    auto mb = dynamic_cast<Misere_Board*>(board);  
     if (!mb) return;
 
     const int size = 3;
     const std::string death_msg = "DIED";
 
-    // Print column headers
     std::cout << "       ";
     for (int c = 0; c < size; ++c) std::cout << c << "         ";
     std::cout << "\n";
@@ -40,7 +39,7 @@ void Misere_UI::display_board(Player<char>* loser)
 
         for (int c = 0; c < size; ++c) {
             if (r == 1 && c == 1) {
-                // Middle cell of second row
+            
                 std::cout<< loser->get_name()<<" " << death_msg << " |";
             }
             else {
@@ -55,7 +54,7 @@ void Misere_UI::display_board(Player<char>* loser)
 }
 
 Player<char>* Misere_UI::create_player(string& name, char symbol, PlayerType type) {
-    // Create player based on type
+    
     cout << "Creating " << (type == PlayerType::HUMAN ? "human" : "computer")
         << " player: " << name << " (" << symbol << ")\n";
 
