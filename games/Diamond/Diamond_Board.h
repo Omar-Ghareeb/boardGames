@@ -6,7 +6,7 @@
 
 /**
  * @class Diamond_Board
- * @brief A 5x5 Board implementing the Diamond Tic-Tac-Toe logic.
+ * @brief A 7x7 board implementing the Diamond Tic-Tac-Toe logic.
  * @details The game consists of a 5x5 grid, conceptually shaped as a diamond.
  * A player wins by simultaneously completing:
  *  - A line of 4 marks (horizontally, vertically, or diagonally)
@@ -22,16 +22,18 @@ private:
     int Moves = 0;
     vector<pair<int, int>> invalid // vector for invalid cells.
     {
-            {0,0},{0,1}  ,{0,3},{0,4},
-            {1,0}              ,{1,4},
-
-            {3,0}              ,{3,4},
-            {4,0},{4,1}  ,{4,3},{4,4}
+            {0,0},{0,1},{0,2},      {0,4},{0,5},{0,6},
+            {1,0},{1,1},                  {1,5},{1,6},
+            {2,0},                              {2,6},
+            
+            {4,0},                              {4,6},
+            {5,0},{5,1},                        {5,6},
+            {6,0},{6,1},{6,2},      {6,4},{6,5},{6,6},
     };
     
 public:
     /**
-    * @brief Constructor. Initializes a 5x5 board.
+    * @brief Constructor. Initializes a 7x7 board.
     */
     Diamond_Board();
     /**

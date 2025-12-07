@@ -1,7 +1,7 @@
 #include "Diamond_Board.h"
 #include <vector>
 
-Diamond_Board::Diamond_Board() :Board(5, 5)
+Diamond_Board::Diamond_Board() :Board(7, 7)
 {
     for (int r = 0; r < rows; ++r) {
         for (int c = 0; c < columns; ++c) {
@@ -30,7 +30,7 @@ bool Diamond_Board::update_board(Move<char>* move)
     int row = move->get_x();
     int col = move->get_y();
 
-    if (row < 0 || row >= 5 || col < 0 || col >= 5) return false;
+    if (row < 0 || row >= 7 || col < 0 || col >= 7) return false;
 
     if (board[row][col] != blank_symbol) return false;
 
@@ -52,52 +52,56 @@ void Diamond_Board::check_direction(Player<char>* player, vector<vector<pair<int
 {
     char s = player->get_symbol();
 
-    // Horizontale 3 marks
-    for (int r = 1; r < 4; r += 2) {
-        vector<pair<int, int>> L3;
-        for (int c = 1; c < 4; c++) {
-            if (board[r][c] == s) {
-                L3.push_back({ r,c });
-            }
-        }
-        if (L3.size() == 3) lines_3.push_back(L3);
-    }
-
-    // Horizontale 4 marks
-    vector<pair<int, int>> L4;
-    for (int c = 0; c <= 4; ++c) {
-        if (board[2][c] == s) L4.push_back({ 2,c });
-    }
-    if (L4.size() == 4) lines_4.push_back(L4);
-
-    // les diagonales
-    vector<vector<pair<int, int>>> diagonals = {
-        { {0,2}, {1,1}, {2,0} },
-        { {0,2}, {1,3}, {2,4} },
-        { {1,1}, {2,2}, {3,3} },
-        { {1,3}, {2,2}, {3,1} },
-        { {2,0}, {3,1}, {4,2} },
-        { {2,4}, {3,3}, {4,2} }
+    const int DIRS[4][2] = {
+        {0, 1},  // horizontale.
+        {1, 0},  // verticale.
+        {1, 1},  // diagonale en bas vers le droit.
+        {1, -1}  // diagonale en bas vers le gauche.
     };
 
-    for (auto& diag : diagonals) {
-        if (board[diag[0].first][diag[0].second] == s &&
-            board[diag[1].first][diag[1].second] == s &&
-            board[diag[2].first][diag[2].second] == s) {
-            lines_3.push_back(diag);
+    for (int r = 0; r < rows; ++r)
+    {
+        for (int c = 0; c < columns; ++c)
+        {
+            if (!is_valid_cell(r, c)) continue;
+            if (board[r][c] != s) continue;
+
+            for (auto& d : DIRS)
+            {
+                int dr = d[0], dc = d[1];
+
+                vector<pair<int, int>> line3;
+                for (int k = 0; k < 3; k++)
+                {
+                    int nr = r + dr * k;
+                    int nc = c + dc * k;
+
+                    if (nr < 0 || nr >= rows || nc < 0 || nc >= columns) goto skip3;
+                    if (!is_valid_cell(nr, nc)) goto skip3;
+                    if (board[nr][nc] != s) goto skip3;
+
+                    line3.push_back({ nr,nc });
+                }
+                lines_3.push_back(line3);
+            skip3:;
+
+                vector<pair<int, int>> line4;
+                for (int k = 0; k < 4; k++)
+                {
+                    int nr = r + dr * k;
+                    int nc = c + dc * k;
+
+                    if (nr < 0 || nr >= rows || nc < 0 || nc >= columns) goto skip4;
+                    if (!is_valid_cell(nr, nc)) goto skip4;
+                    if (board[nr][nc] != s) goto skip4;
+
+                    line4.push_back({ nr,nc });
+                }
+                lines_4.push_back(line4);
+            skip4:;
+            }
         }
     }
-
-    // Verticale 3 marks
-    if (board[1][1] == s && board[2][1] == s && board[3][1] == s)
-        lines_3.push_back({ {1,1},{2,1},{3,1} });
-    if (board[1][3] == s && board[2][3] == s && board[3][3] == s)
-        lines_3.push_back({ {1,3},{2,3},{3,3} });
-
-    // Verticale 4 marks
-    vector<pair<int, int>> L4v = { {0,2},{1,2},{2,2},{3,2} };
-    if (board[0][2] == s && board[1][2] == s && board[2][2] == s && board[3][2] == s)
-        lines_4.push_back(L4v);
 }
 
 bool Diamond_Board::share_one_cell(const vector<pair<int, int>>& ligne3, const vector<pair<int, int>>& ligne4)
