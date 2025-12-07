@@ -54,7 +54,7 @@ public:
     bool is_lose(Player<char>* player) override;
     /**
      * @brief Checks if the game is a draw.
-     * @details A draw occurs if  (n_moves == 13) and no one has won.
+     * @details A draw occurs if  (n_moves == 25) and no one has won.
      * @param player Pointer to the player.
      * @return true if draw.
      */

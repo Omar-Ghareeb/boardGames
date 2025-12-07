@@ -150,7 +150,7 @@ bool Diamond_Board::is_lose(Player<char>* player)
 
 bool Diamond_Board::is_draw(Player<char>* player)
 {
-   return Moves == 13 && !is_win(player);
+   return Moves == 25 && !is_win(player);
 }
 
 bool Diamond_Board::game_is_over(Player<char>* player)
