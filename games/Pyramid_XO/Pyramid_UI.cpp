@@ -3,43 +3,61 @@
 #include <iostream>
 using namespace std;
 
-Pyramid_XO_UI::Pyramid_XO_UI() :UI<char>("Welcome to Pyramid X-O", 3) {} 
+Pyramid_XO_UI::Pyramid_XO_UI() : UI<char>("Welcome to Pyramid X-O", 3) {}
 
-Player<char>* Pyramid_XO_UI::create_player(string& name, char symbol, PlayerType type) {
+Player<char> *Pyramid_XO_UI::create_player(string &name, char symbol, PlayerType type)
+{
     cout << "Creating " << (type == PlayerType::HUMAN ? "human" : "computer")
-        << " player: " << name << " (" << symbol << ")\n";
+         << " player: " << name << " (" << symbol << ")\n";
 
     return new Player<char>(name, symbol, type);
 }
 
-Move<char>* Pyramid_XO_UI::get_move(Player<char>* player) {
-    int x=-1, y=-1;
+Move<char> *Pyramid_XO_UI::get_move(Player<char> *player)
+{
+    int x = -1, y = -1;
 
-    Pyramid_Board* board = dynamic_cast<Pyramid_Board*>(player->get_board_ptr());
+    // Cast board pointer to access specific Pyramid methods like is_valid_cell
+    Pyramid_Board *board = dynamic_cast<Pyramid_Board *>(player->get_board_ptr());
 
-    if (player->get_type() == PlayerType::HUMAN) {;
-         do {
+    if (player->get_type() == PlayerType::HUMAN)
+    {
+        ;
+        do
+        {
             cout << "\nPlease enter your move x and y (within the pyramid): ";
             cin >> x >> y;
-            if (!board->is_valid_cell(x, y)) {
+
+            // Validate geometry
+            if (!board->is_valid_cell(x, y))
+            {
                 cout << "That cell is not part of the pyramid. Try again.\n";
                 x = y = -1;
-            } else if (board->get_cell(x, y) != '.') {
+            }
+            else if (board->get_cell(x, y) != '.')
+            {
                 cout << "That cell is already occupied. Try again.\n";
                 x = y = -1;
             }
         } while (x == -1);
     }
-    else if (player->get_type() == PlayerType::COMPUTER) {
+    else if (player->get_type() == PlayerType::COMPUTER)
+    {
+        // Generate a random row
         x = rand() % player->get_board_ptr()->get_rows();
-        if(x==0){
-            y=2;
+
+        // Generate valid column based on the specific row
+        if (x == 0)
+        {
+            y = 2; // Only one valid spot at the top
         }
-        else if(x==1){
-            y=1+rand()%3;
+        else if (x == 1)
+        {
+            y = 1 + rand() % 3; // Spots 1, 2, 3
         }
-        else if(x==2){
-            y=rand()%5;
+        else if (x == 2)
+        {
+            y = rand() % 5; // Spots 0 to 4
         }
     }
     return new Move<char>(x, y, player->get_symbol());
