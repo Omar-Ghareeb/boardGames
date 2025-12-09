@@ -21,7 +21,7 @@ void Obstacles_Board::addRandomObstacles(int n)
             {
                 board[r][c] = '#';
                 added++;
-                nombreMoves += 2;
+                nombreMoves ++;
             }
         
     }
@@ -91,7 +91,7 @@ bool Obstacles_Board::is_win(Player<char>* player)
 
 bool Obstacles_Board::is_draw(Player<char>* player)
 {
-    return nombreMoves >= 36;
+    return nombreMoves >= 36 && !is_win(player);
 }
 
 bool Obstacles_Board::game_is_over(Player<char>* player)

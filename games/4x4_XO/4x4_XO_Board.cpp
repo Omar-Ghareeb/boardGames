@@ -42,9 +42,11 @@ bool _4x4_XO_Board::is_win(Player<char> *player)
 {
     char sym = player->get_symbol();
 
-    // Check rows
+    // Check rows for any sequence of 3
     for (int i = 0; i < 4; i++)
     {
+        // Loop runs 0 to 1, checking (j, j+1, j+2)
+        // This covers indices [0,1,2] and [1,2,3]
         for (int j = 0; j <= 1; j++)
         {
             if (board[i][j] == sym &&
@@ -54,7 +56,7 @@ bool _4x4_XO_Board::is_win(Player<char> *player)
         }
     }
 
-    // Check columns
+    // Check columns for any sequence of 3
     for (int j = 0; j < 4; j++)
     {
         for (int i = 0; i <= 1; i++)
@@ -66,7 +68,7 @@ bool _4x4_XO_Board::is_win(Player<char> *player)
         }
     }
 
-    // main diagonal
+    // Check main diagonals (top-left to bottom-right)
     for (int i = 0; i <= 1; i++)
     {
         for (int j = 0; j <= 1; j++)
@@ -78,11 +80,11 @@ bool _4x4_XO_Board::is_win(Player<char> *player)
         }
     }
 
-    // anti-diagonal
+    // Check anti-diagonals (top-right to bottom-left)
     for (int i = 0; i <= 1; i++)
     {
         for (int j = 2; j < 4; j++)
-        { // starting at column 2 or 3
+        { // starting at column 2 or 3 to allow space for -1, -2 steps
             if (board[i][j] == sym &&
                 board[i + 1][j - 1] == sym &&
                 board[i + 2][j - 2] == sym)
