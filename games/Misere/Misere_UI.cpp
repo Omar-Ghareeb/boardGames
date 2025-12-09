@@ -23,12 +23,13 @@ Player<char>** Misere_UI::setup_players() {
 
 void Misere_UI::display_board(Player<char>* loser)
 {
-    auto mb = dynamic_cast<Misere_Board*>(board);  
+    auto mb = dynamic_cast<Misere_Board*>(board);
     if (!mb) return;
 
     const int size = 3;
     const std::string death_msg = "DIED";
 
+   
     std::cout << "       ";
     for (int c = 0; c < size; ++c) std::cout << c << "         ";
     std::cout << "\n";
@@ -38,9 +39,8 @@ void Misere_UI::display_board(Player<char>* loser)
         std::cout << " " << r << " |";
 
         for (int c = 0; c < size; ++c) {
-            if (r == 1 && c == 1) {
-            
-                std::cout<< loser->get_name()<<" " << death_msg << " |";
+            if (loser && r == 1 && c == 1) {  
+                std::cout << loser->get_name() << " " << death_msg << " |";
             }
             else {
                 std::cout << "   " << mb->get_cell(r, c) << "   |";
