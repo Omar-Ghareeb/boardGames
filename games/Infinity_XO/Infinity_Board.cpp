@@ -22,31 +22,31 @@ bool infinity_Board::update_board(Move<char> *move)
 
         if (mark == 0)
         { // Undo move
-            n_moves--;
+            symbols--;
             board[x][y] = blank_symbol;
         }
         else
         { // Apply move
-            n_moves++;
+
+            // --- Logic for Infinity XO ---
+            // 1. Store the move location
+            moves.push({x, y});
+
+            // 2. Increment total move counter
+            NoOfMoves++;
+
+            // 3. Check condition to remove the oldest move
+            // Every 3rd move (3, 6, 9...), the oldest move in the queue is popped.
+            if (!moves.empty() && NoOfMoves % 3 == 0 && NoOfMoves != 0)
+            {
+                int a = moves.front().first;
+                int b = moves.front().second;
+                board[a][b] = blank_symbol; // Clear the cell
+                moves.pop();                // Remove from history
+                symbols--;                  // Decrement active move count
+            }
+            symbols++;
             board[x][y] = toupper(mark);
-        }
-
-        // --- Logic for Infinity XO ---
-        // 1. Store the move location
-        moves.push({x, y});
-
-        // 2. Increment total move counter
-        NoOfMoves++;
-
-        // 3. Check condition to remove the oldest move
-        // Every 3rd move (3, 6, 9...), the oldest move in the queue is popped.
-        if (!moves.empty() && NoOfMoves % 3 == 0 && NoOfMoves != 0)
-        {
-            int a = moves.front().first;
-            int b = moves.front().second;
-            board[a][b] = blank_symbol; // Clear the cell
-            moves.pop();                // Remove from history
-            n_moves--;                  // Decrement active move count
         }
 
         return true;
@@ -81,7 +81,7 @@ bool infinity_Board::is_win(Player<char> *player)
 
 bool infinity_Board::is_draw(Player<char> *player)
 {
-    return (n_moves == 9 && !is_win(player));
+    return (symbols == 9 && !is_win(player));
 }
 
 bool infinity_Board::game_is_over(Player<char> *player)

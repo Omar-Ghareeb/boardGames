@@ -34,6 +34,10 @@ public:
     int NoOfMoves = 0;
 
     /**
+     * @brief counter of symbols on the board
+     */
+    int symbols = 0;
+    /**
      * @brief Updates the board with a player's move and handles move expiration.
      * @details
      * 1. Places the new symbol on the board.
